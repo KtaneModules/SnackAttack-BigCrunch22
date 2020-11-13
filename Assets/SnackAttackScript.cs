@@ -206,7 +206,7 @@ public class SnackAttackScript : MonoBehaviour
 		}
 		StageBro.text = "";
 		Audio.PlaySoundAtTransform(SFX[2].name, transform);
-		MovementRecord.Add("");
+		MoveCount.text = "1";
 		for (int x = 0; x < 3; x++)
 		{
 			ImageRenderers[(x * 3) + 2].sprite = WhiteArrows[x];
