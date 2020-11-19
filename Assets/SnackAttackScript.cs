@@ -303,7 +303,7 @@ public class SnackAttackScript : MonoBehaviour
 			ImageRenderers[x].sprite = Pellets;
 		}
 		ImageRenderers[(PacmanPosition * 3) + 2].sprite = Pacman[PacmanSprite];
-		ImageRenderers[(PacmanPosition * 3) + 2].color = new Color (255, 255, 255);
+		ImageRenderers[(PacmanPosition * 3) + 2].color = new Color (255, 0, 0);
 		while (MusicManagement.isPlaying)
 		{
 			yield return new WaitForSecondsRealtime(0.1f);
@@ -396,9 +396,24 @@ public class SnackAttackScript : MonoBehaviour
 						yield return new WaitForSecondsRealtime(1f);
 						for (int c = 0; c < 5; c++)
 						{
+							ImageRenderers[(Position[x/3] * 3) + 2].color = new Color (255, 255, 255);
 							ImageRenderers[(Position[x/3] * 3) + 2].sprite = Warnings[1];
 							Audio.PlaySoundAtTransform(SFX[0].name, transform);
 							yield return new WaitForSecondsRealtime(0.5f);
+							switch (PacmanColor)
+							{
+								case 0:
+									ImageRenderers[(Position[x/3] * 3) + 2].color = new Color (255, 0, 0);
+									break;
+								case 1:
+									ImageRenderers[(Position[x/3] * 3) + 2].color = new Color (0, 255, 0);
+									break;
+								case 2:
+									ImageRenderers[(Position[x/3] * 3) + 2].color = new Color (0, 0, 255);
+									break;
+								default:
+									break;
+							}
 							ImageRenderers[(Position[x/3] * 3) + 2].sprite = Pacman[PacmanPosition];
 							yield return new WaitForSecondsRealtime(0.5f);
 						}
@@ -427,6 +442,20 @@ public class SnackAttackScript : MonoBehaviour
 					ImageRenderers[y].color = new Color (255, 255, 255);
 				}
 				ImageRenderers[(Position[x/3] * 3) + 2].sprite = Pacman[PacmanPosition];
+				switch (PacmanColor)
+				{
+					case 0:
+						ImageRenderers[(Position[x/3] * 3) + 2].color = new Color (255, 0, 0);
+						break;
+					case 1:
+						ImageRenderers[(Position[x/3] * 3) + 2].color = new Color (0, 255, 0);
+						break;
+					case 2:
+						ImageRenderers[(Position[x/3] * 3) + 2].color = new Color (0, 0, 255);
+						break;
+					default:
+						break;
+				}
 				yield return new WaitForSecondsRealtime(1f);
 				MusicManagement.clip = SFX[10];
 				MusicManagement.Play();
@@ -438,7 +467,6 @@ public class SnackAttackScript : MonoBehaviour
 				{
 					for (int j = 0; j < 2; j++)
 					{
-						
 						for (int z = 0; z < 9; z++)
 						{
 							ImageRenderers[z].color = new Color (255, 255, 255);
